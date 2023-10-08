@@ -1,6 +1,6 @@
 import { InputDiv } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ const ContactForm = () => {
     }
 
     dispatch(addContact(name, number));
+    const form = e.target;
+    form.reset();
   };
 
   return (

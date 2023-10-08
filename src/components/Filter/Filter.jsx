@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { changeFilter } from 'redux/actions';
+import { changeFilter } from 'redux/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();

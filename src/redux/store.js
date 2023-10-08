@@ -1,7 +1,17 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
-import { rootReducer } from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
 
-// Створюємо розширення стора, щоб додати інструменти розробника
-const enhancer = devToolsEnhancer();
-export const store = createStore(rootReducer, enhancer);
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { reducer } from './reducer';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+});
+export const persistor = persistStore(store);
